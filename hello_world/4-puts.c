@@ -1,5 +1,5 @@
 #include<stdio.h>
-/*
+/**
 *Functiont to print a text
 */
 int main(void)
