@@ -1,2 +1,0 @@
-#!/bin/bash
-gcc -o echo "$CFILE" | tr '.c' '.o' 
