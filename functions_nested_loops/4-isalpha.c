@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /**
- * _islower - Checks if a character given in parameter is lowercase or uppercase
+ * _islower - Checks if a character given in parameter is an alphabet
  *
  * @ch: is a character passed in parameters
  *
@@ -9,7 +9,7 @@
  */
 int _isalpha(char ch)
 {
-  if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))
+if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))
 {
 return (1);
 }
