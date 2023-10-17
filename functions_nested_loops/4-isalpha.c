@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /**
- * _islower - Checks if a character given in parameter is an alphabet
+ * _isalpha - Checks if a character given in parameter is an alphabet
  *
  * @ch: is a character passed in parameters
  *
