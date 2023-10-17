@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <main.h>
+#include "main.h"
 
 /**
  * main - Entry point
@@ -10,7 +10,7 @@ int main(void)
 {
 char word_string[] = "_putchar";
 int i = 0;
-while (word_string != '\0')
+while (word_string[i] != '\0')
 {
 putchar(word_string[i]);
 i++;
