@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "main.h"
+#include "1-main.h"
 /**
  * print_alphabet - print the alphabet in lowercase
  *
