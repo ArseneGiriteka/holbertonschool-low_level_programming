@@ -5,12 +5,12 @@
  *
  * Return: Always void.
  */
-void print_alphabet()
+void print_alphabet(void)
 {
 int i = 0;
 while ('a' + i <= 'z')
 {
-putchar('a'+i);
+putchar('a' + i);
 i++;
 }
 putchar('\n');
