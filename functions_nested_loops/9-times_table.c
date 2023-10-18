@@ -28,11 +28,17 @@ void times_table(void)
 			}
 			else
 			{
-				_putchar(' ');
-				_putchar(' ');
+				if (y != 0)
+				{
+					_putchar(' ');
+                                	_putchar(' ');
+				}
 			}
 			_putchar('0' + d3);
-			_putchar(',');
+			if (y != max)
+			{
+				_putchar(',');
+			}
 		}
 		_putchar('\n');
 		y = 0;
