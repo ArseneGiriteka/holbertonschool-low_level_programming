@@ -8,8 +8,6 @@
  */
 int print_sign(int n)
 {
-char ch = ' ';
-char return_value = 0;
 if (n > 0)
 {
 putchar('+');
