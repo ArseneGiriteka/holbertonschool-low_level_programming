@@ -23,16 +23,15 @@ void times_table(void)
 			d1 = (number - (d2 * 10)) / 10;
 			if (number != 0)
 			{
-				print_digit(d3);
-				print_digit(d2);
 				print_digit(d1);
+				print_digit(d2);
 			}
 			else
 			{
 				_putchar(' ');
 				_putchar(' ');
-				_putchar('0');
 			}
+			_putchar('0' + d3);
 			_putchar(',');
 		}
 		_putchar('\n');
