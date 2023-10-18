@@ -3,11 +3,11 @@
 void print_digit(int);
 
 /**
- * time_table - Prints the time table
+ * times_table - Prints the time table
  *
  * Return: return a void
  */
-void time_table(void)
+void times_table(void)
 {
 	int i = 0, x = 0, y = 0, max = 9;
 
