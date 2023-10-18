@@ -26,13 +26,10 @@ void times_table(void)
 				print_digit(d1);
 				print_digit(d2);
 			}
-			else
+			else if (y != 0)
 			{
-				if (y != 0)
-				{
-					_putchar(' ');
-                                	_putchar(' ');
-				}
+				_putchar(' ');
+				_putchar(' ');
 			}
 			_putchar('0' + d3);
 			if (y != max)
