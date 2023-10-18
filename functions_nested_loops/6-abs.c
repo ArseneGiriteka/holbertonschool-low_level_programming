@@ -1,7 +1,7 @@
 #include "main.h"
 
-/*
- * _abs - compute absolute values of integers
+/**
+ * _abs - Compute absolute values of integers
  *
  * @n: integer value passed in parameter
  *
