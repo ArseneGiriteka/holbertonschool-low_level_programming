@@ -6,8 +6,5 @@ NAME = school
 all : $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
-$(echo $(OBJ) | grep '\.o$' ) : $(echo $(SRC) | grep '\.c$')
+$(echo $(OBJ) | grep '\.o$') : $(echo $(SRC) | grep '\.c$')
 	$(CC) -c -o $@ $?
-
-clean:
-	rm -rf $(OBJ)
