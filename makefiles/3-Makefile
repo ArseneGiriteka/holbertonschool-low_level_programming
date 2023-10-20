@@ -5,13 +5,13 @@ OBJR = $(patsubst %.c, %.o, $(SRC))
 NAME = school
 RM = rm -f
 
-all : $(OBJ)
+all:$(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
 $(echo $(OBJ | grep '.o' )) : $(echo $(SRC) | grep '.c')
 	$(CC) -c -o $@ $?
 
-clean : 
+clean: 
 	$(RM) *~ $(NAME)
 	$(RM) -f .*~ $(NAME)
 	$(RM) -f *.swp $(NAME)
@@ -21,6 +21,6 @@ clean :
 oclean:
 	$(RM) *.o
 
-fclean: clean oclean
+fclean:clean oclean
 
 re: oclean all
