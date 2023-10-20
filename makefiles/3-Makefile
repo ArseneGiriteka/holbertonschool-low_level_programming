@@ -12,12 +12,7 @@ $(echo $(OBJ | grep '.o' )) : $(echo $(SRC) | grep '.c')
 	$(CC) -c -o $@ $?
 
 clean : 
-	$(RM) *~
-	$(RM) .*~
-	$(RM) *.swp
-	$(RM) *.swo
-	$(RM) *.swn
-
+	$(RM) *~ $(NAME)
 oclean :
 	$(RM) *.o
 
