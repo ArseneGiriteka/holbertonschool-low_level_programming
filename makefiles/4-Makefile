@@ -6,9 +6,9 @@ RM = rm -f
 CFLAGS = $(echo "-Wall -Werror -Wextra -pedantic")
 
 all:$(OBJ)
-        $(CC) $(OBJ) -o $(NAME)
+	$(CC) $(OBJ) -o $(NAME)
 $(echo $(OBJ | grep '.o' )) : $(echo $(SRC) | grep '.c')
-        $(CC) $(CFLAGS) -c -o $@ $?
+	$(CC) $(CFLAGS) -c -o $@ $?
 
 clean: 
 	$(RM) *~ $(NAME)
