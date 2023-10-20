@@ -1,0 +1,22 @@
+CC = gcc
+SRC = main.c school.c
+OBJ = $(patsubst %.c, %.o, $(SRC))
+OBJR = $(patsubst %.c, %.o, $(SRC))
+NAME = school
+RM = rm -f
+
+all : $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
+
+$(echo $(OBJ | grep '.o' )) : $(echo $(SRC) | grep '.c')
+	$(CC) -c -o $@ $?
+
+re : oclean all
+
+clean : 
+	$(RM) *~ *.swp *.swo
+
+oclean :
+	$(RM) *.o
+
+fclean : clean oclean
