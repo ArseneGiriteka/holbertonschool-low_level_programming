@@ -7,7 +7,6 @@ CFLAGS = $(echo "-Wall -Werror -Wextra -pedantic")
 
 all:$(OBJ)
         $(CC) $(OBJ) -o $(NAME)
-
 $(echo $(OBJ | grep '.o' )) : $(echo $(SRC) | grep '.c')
         $(CC) $(CFLAGS) -c -o $@ $?
 
