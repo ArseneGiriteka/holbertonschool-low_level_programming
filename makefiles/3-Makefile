@@ -13,6 +13,10 @@ $(echo $(OBJ | grep '.o' )) : $(echo $(SRC) | grep '.c')
 
 clean : 
 	$(RM) *~ $(NAME)
+	rm -f .*~
+	rm -f *.swp
+	rm -f *.swo
+	rm -f *.swn
 oclean :
 	$(RM) *.o
 
