@@ -17,6 +17,7 @@ clean :
 	$(RM) -f *.swp $(NAME)
 	$(RM) -f *.swo $(NAME)
 	$(RM) -f *.swn $(NAME)
+
 oclean :
 	$(RM) *.o
 
