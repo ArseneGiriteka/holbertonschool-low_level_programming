@@ -18,9 +18,9 @@ clean :
 	$(RM) -f *.swo $(NAME)
 	$(RM) -f *.swn $(NAME)
 
-oclean :
+oclean:
 	$(RM) *.o
 
-fclean : clean oclean
+fclean: clean oclean
 
-re : oclean all
+re: oclean all
