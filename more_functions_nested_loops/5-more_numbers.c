@@ -13,7 +13,14 @@ void more_numbers(void)
 	{
 		for (i = 0; i <= 14; i++)
 		{
-			_putchar('0' + i);
+			int dn = i / 10, un = i % 10;
+
+			if (dn != 0)
+			{
+				_putchar('0' + dn);
+			}
+
+			_putchar('0' + un);
 		}
 		_putchar('\n');
 		n++;
