@@ -11,8 +11,6 @@ all : $(OBJ)
 $(echo $(OBJ | grep '.o' )) : $(echo $(SRC) | grep '.c')
 	$(CC) -c -o $@ $?
 
-re : oclean all
-
 clean : 
 	$(RM) *~
 	$(RM) .*~
@@ -24,3 +22,5 @@ oclean :
 	$(RM) *.o
 
 fclean : clean oclean
+
+re : oclean all
