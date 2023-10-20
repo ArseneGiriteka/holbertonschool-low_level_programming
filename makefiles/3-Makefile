@@ -14,7 +14,7 @@ $(echo $(OBJ | grep '.o' )) : $(echo $(SRC) | grep '.c')
 re : oclean all
 
 clean : 
-	$(RM) *~ *.swp *.swo
+	$(RM) *~
 
 oclean :
 	$(RM) *.o
