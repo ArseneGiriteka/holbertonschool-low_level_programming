@@ -1,7 +1,9 @@
 #include "main.h"
 
 /**
- * @dest: string destination
+ * _memcpy - function
+ *
+ * @dest: a string value
  *
  * @src: string source
  *
@@ -18,7 +20,7 @@ char *_memcpy(char *dest, char *src, unsigned int n)
 		src_length++;
 	}
 
-	while ((src + (src_length * sizeof(char))) && (i < n))
+	while ((src + (i * sizeof(char))) && (i < n))
 	{
 		*(dest + i) = *(src + i);
 		i++;
