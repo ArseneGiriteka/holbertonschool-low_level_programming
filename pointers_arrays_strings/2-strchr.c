@@ -1,6 +1,4 @@
 #include "main.h"
-#include <stdio.h>
-
 /**
  * _strchr - function
  *
@@ -18,7 +16,6 @@ char *_strchr(char *s, char c)
 	{
 		if (*(s + i) == c)
 		{
-			return (s + i);
 			break;
 		}
 		i++;
