@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  * _strchr - function
@@ -13,7 +14,7 @@ char *_strchr(char *s, char c)
 {
 	unsigned int i = 0;
 
-	while (s + (i * sizeof(char)))
+	while (*(s + i))
 	{
 		if (*(s + i) == c)
 		{
@@ -21,5 +22,5 @@ char *_strchr(char *s, char c)
 		}
 		i++;
 	}
-	return (0);
+	return (NULL);
 }
