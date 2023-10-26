@@ -11,27 +11,26 @@ char *leet(char *str)
 {
 	unsigned int i = 0;
 
+	int x = 0, length = 0;
+
+	char ch[] = {'a', 'e', 'o', 't', 'l'};
+
+	char rep_ch[] = {'4', '3', '0', '7', '1'};
+
+	while (*(ch + length))
+	{
+		length++;
+	}
+
 	while (*(str + i))
 	{
-		if (*(str + i) == 'a' || *(str + i) == 'A')
+		for (x = 0; x < length; x++)
 		{
-			*(str + i) = '4';
-		}
-		else if (*(str + i) == 'e' || *(str + i) == 'E')
-		{
-			*(str + i) = '3';
-		}
-		else if (*(str + i) == 'o' || *(str + i) == 'O')
-		{
-			*(str + i) = '0';
-		}
-		else if (*(str + i) == 't' || *(str + i) == 'T')
-		{
-			*(str + i) = '7';
-		}
-		else if (*(str + i) == 'l' || *(str + i) == 'L')
-		{
-			*(str + i) = '1';
+			if ((*(str + i) == *(ch + x)) || (*(str + i) == (*(ch + x) - 'a' + 'A')))
+			{
+				*(str + i) = *(rep_ch + x);
+				break;
+			}
 		}
 		i++;
 	}
