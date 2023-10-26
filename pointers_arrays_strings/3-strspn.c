@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _strsp - function
+ * _strspn - function
  *
  * @s: string value
  *
