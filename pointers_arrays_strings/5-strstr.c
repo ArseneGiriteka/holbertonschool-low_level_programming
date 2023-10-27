@@ -17,9 +17,9 @@ char *_strstr(char *haystack, char *needle)
 	while (*(haystack + i))
 	{
 		j = 0;
-		
+
 		position = i;
-		
+
 		while (*(haystack + i) == *(needle + j))
 		{
 			j++;
