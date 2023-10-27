@@ -33,7 +33,7 @@ void _print_array(char *a)
 	{
 		_putchar(*(a + i));
 		i++;
-		if ((i % 8) == 0)
+		if (((i % 8) == 0) && (i != 0))
 			_putchar('\n');
 	}
 }
