@@ -26,7 +26,7 @@ void _print_array(char *a)
 {
 	unsigned int i = 0;
 
-	while (*(a + i))
+	while ((*(a + i) == ' ') || (*(a + i) <= 'z' && *(a + i) >= 'a') || (*(a + i) <= 'Z' && *(a + i) >= 'A'))
 	{
 		_putchar(*(a + i));
 		i++;
