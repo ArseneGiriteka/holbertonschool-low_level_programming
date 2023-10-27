@@ -1,6 +1,7 @@
 #include "main.h"
 
 void _print_array(char *);
+
 /**
  * print_chessboard - a function
  *
@@ -13,11 +14,10 @@ void print_chessboard(char (*a)[8])
 	unsigned int i = 0;
 
 	_print_array(*(a + i));
-	_putchar('\n');
 }
 
 /**
- * print_array - function
+ * _print_array - function
  *
  * @a: array to print
  *
