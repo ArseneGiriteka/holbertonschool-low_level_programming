@@ -12,6 +12,7 @@ void print_chessboard(char (*a)[8])
 {
 	unsigned int i = 0;
 	_print_array(*(a + i));
+	_putchar('\n');
 }
 
 /**
