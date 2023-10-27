@@ -1,6 +1,6 @@
 #include "main.h"
 
-void _print_array(char*);
+void _print_array(char *);
 /**
  * print_chessboard - a function
  *
@@ -11,6 +11,7 @@ void _print_array(char*);
 void print_chessboard(char (*a)[8])
 {
 	unsigned int i = 0;
+
 	_print_array(*(a + i));
 	_putchar('\n');
 }
@@ -26,7 +27,9 @@ void _print_array(char *a)
 {
 	unsigned int i = 0;
 
-	while ((*(a + i) == ' ') || (*(a + i) <= 'z' && *(a + i) >= 'a') || (*(a + i) <= 'Z' && *(a + i) >= 'A'))
+	while ((*(a + i) == ' ') || (*(a + i) <= 'z' &&
+				*(a + i) >= 'a') || (*(a + i) <= 'Z' &&
+				*(a + i) >= 'A'))
 	{
 		_putchar(*(a + i));
 		i++;
