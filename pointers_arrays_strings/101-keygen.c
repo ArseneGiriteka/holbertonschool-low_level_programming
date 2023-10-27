@@ -11,7 +11,7 @@ char generate_random_char();
  */
 int main(void)
 {
-	char *key;
+	char *key = "";
 	int i = 0, length = 0;
 	time_t t;
 	
@@ -19,7 +19,7 @@ int main(void)
 	length = (rand() % 50);
 	while (i < length)
 	{
-		key[i] = generate_random_char();
+		*(key + i) = generate_random_char();
 		i++;
 	}
 
