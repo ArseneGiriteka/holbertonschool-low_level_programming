@@ -41,5 +41,5 @@ int _sqrt_recursivity(int n, int i)
 		return (1 + _sqrt_recursivity(n, i));
 	}
 	else
-		return 0;
+		return (0);
 }
