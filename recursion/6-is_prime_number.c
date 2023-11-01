@@ -34,5 +34,5 @@ int check_division(int n, int x)
 	else if (n % x == 0)
 		return (0);
 	else
-		return check_division(n, x + 1);
+		return (check_division(n, x + 1));
 }
