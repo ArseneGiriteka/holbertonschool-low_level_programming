@@ -38,8 +38,10 @@ int main(int argc, char *argv[])
 
 	n25 = (amount - (amount % 25)) / 25;
 	n10 = (amount - (n25 * 25) - ((amount - (n25 * 25)) % 10)) / 10;
-	n5 = (amount - (n25 * 25) - (n10 * 10) - ((amount - (n25 * 25) - (n10 * 10))% 5)) / 5;
-	n2 = (amount - (n25 * 25) - (n10 * 10) - (n5 * 5) - ((amount - (n25 * 25) - (n10 * 10) - (n5 * 5)) % 2)) / 2;
+	n5 = (amount - (n25 * 25) - (n10 * 10) -
+			((amount - (n25 * 25) - (n10 * 10)) % 5)) / 5;
+	n2 = (amount - (n25 * 25) - (n10 * 10) - (n5 * 5) -
+			((amount - (n25 * 25) - (n10 * 10) - (n5 * 5)) % 2)) / 2;
 	n1 = (amount - (n25 * 25) - (n10 * 10) - (n5 * 5) - (n2 * 2));
 	printf("%d\n", n25 + n10 + n5 + n2 + n1);
 	return (0);
