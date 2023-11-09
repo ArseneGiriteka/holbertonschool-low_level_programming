@@ -2,32 +2,33 @@
 
 /**
  * _strdup - function
- *
- * @str: a string value
- *
- * Return: a string value
+ * @str: a point to string
+ * Return: a pointer to a string
  */
 char *_strdup(char *str)
 {
-	unsigned int i = 0;
+	unsigned int i = 0, size = 0;
 	char *copy;
 
 	if (str == NULL)
 		return (NULL);
 
-	copy = malloc(sizeof(str));
+	while (*(str + size))
+	{
+		size++;
+	}
 
+	copy = malloc(sizeof(char) * (size + 1));
 	if (copy == NULL)
-		return (NULL);
+		return (copy);
 
-	if (sizeof(copy) != sizeof(str))
-		return (NULL);
-
-	while (*(str + i) || *(str + 1) == '\0')
+	i = 0;
+	while (*(str + i))
 	{
 		*(copy + i) = *(str + i);
 		i++;
 	}
+	*(copy + i) = '\0';
 
 	return (copy);
 }
