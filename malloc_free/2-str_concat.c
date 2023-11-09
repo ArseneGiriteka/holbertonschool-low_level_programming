@@ -15,19 +15,19 @@ char *str_concat(char *s1, char *s2)
 	char *copy;
 
 	if (s1 == NULL)
-		return (NULL);
-	else if (s2 == NULL)
-		s2_length = 0;
-	else
-	{
-		s1_length = length(s1);
-		s2_length = length(s2);
-	}
+		*s1 = '\0';
+	
+	if (s2 == NULL)
+		*s2 = '\0';
+	
+	s1_length = length(s1);
+	s2_length = length(s2);
 
 	copy = _copy(s1);
+	if (copy == NULL)
+		return (copy);
 
 	s1 = malloc(sizeof(char) * (s1_length + s2_length + 1));
-
 	if (s1 == NULL)
 		return (NULL);
 
@@ -81,9 +81,8 @@ char *_copy(char *str)
 	len = length(str);
 
 	copy = malloc(sizeof(char) * (len + 1));
-
 	if (copy == NULL)
-		return (NULL);
+		return (copy);
 
 	while (i < len)
 	{
