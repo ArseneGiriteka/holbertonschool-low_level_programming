@@ -1,5 +1,6 @@
 #include "main.h"
 
+int check_words(char **str);
 int _length(char *str);
 /**
  * argstostr - function
@@ -11,6 +12,8 @@ char *argstostr(int ac, char **av)
 {
 	int i = 0, j = 0, t = 0, str_size = 0;
 	char *str;
+
+	ac = check_words(av);
 
 	if (ac <= 0 || av == NULL)
 		return (NULL);
@@ -66,4 +69,24 @@ int _length(char *str)
 		len++;
 	}
 	return (len);
+}
+
+/**
+ * check_words - function
+ * @str: a string value
+ * Return: an integer value
+ */
+int check_words(char **str)
+{
+	int n = 0;
+
+	if (str == NULL)
+		return (0);
+
+	while (*(str + n) != NULL)
+	{
+		n++;
+	}
+
+	return (n);
 }
