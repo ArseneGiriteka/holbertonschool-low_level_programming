@@ -36,7 +36,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 		i++;
 	}
 
-	while (*(s2 + i - s1_length) && ((i - s1_length) < s1_lenght))
+	while (*(s2 + i - s1_length) && ((i - s1_length) < s2_lenght))
 	{
 		*(copy + i) = *(s2 + i - s1_length);
 		i++;
