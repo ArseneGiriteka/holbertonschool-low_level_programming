@@ -10,7 +10,7 @@ int _putchar(char);
  */
 int _putchar(char c)
 {
-        return (write(1, &c, 1));
+	return (write(1, &c, 1));
 }
 
 /**
@@ -21,7 +21,7 @@ int main(void)
 {
 	unsigned int i = 0;
 
-	while(*(__FILE__ + i))
+	while (*(__FILE__ + i))
 	{
 		_putchar(*(__FILE__ + i));
 		i++;
