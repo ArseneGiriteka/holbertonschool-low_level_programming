@@ -2,45 +2,44 @@
 
 /**
  * alloc_grid - function
- *
- * @width: integer value
- *
- * @height: integer value
- *
- * Return: integer 2D grid
+ * @width: int
+ * @height: int
+ * Return: a int array grid
  */
 int **alloc_grid(int width, int height)
 {
 	int i = 0, j = 0;
-	int **grid;
+	int **array;
 
-	if (width <= 0 || height <= 0)
-		return (NULL);
-
-	grid = malloc(sizeof(int *) * height);
-	if (grid == NULL)
+	array = malloc(sizeof(int *) * height);
+	if (array == NULL)
 		return (NULL);
 
 	for (i = 0; i < height; i++)
 	{
-		*(grid + i) = malloc(sizeof(int) * width);
-		if (*(grid + i) == NULL)
+		*(array + i) = malloc(sizeof(int) * width);
+		if (*(array + i) == NULL)
 		{
 			while (i >= 0)
 			{
-				free(grid + i);
+				free(*(array + i));
 				i--;
 			}
-			return (grid);
+			i = 0;
+			for (i = 0; i < height; i++)
+			{
+				free(array + i);
+			}
+			break;
 		}
-	}
-
-	for (i = 0; i < height; i++)
-	{
 		for (j = 0; j < width; j++)
 		{
-			*(*(grid + i) + j) = 0;
+
+			*(*(array + i) + j) = 0;
 		}
 	}
-	return (grid);
+	if (array == NULL)
+		return (NULL);
+	else
+		return (array);
 }
