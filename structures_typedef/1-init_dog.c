@@ -12,6 +12,9 @@ void init_dog(struct dog *d, char *name, float age, char *owner)
 {
 	unsigned int i = 0;
 
+	if (name == NULL || owner == NULL)
+		exit(1);
+
 	d->name = malloc(sizeof(char) * (_length(name) + 1));
 	if (d->name == NULL)
 		exit (0);
