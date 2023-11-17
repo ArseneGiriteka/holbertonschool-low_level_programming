@@ -16,7 +16,7 @@ void init_dog(struct dog *d, char *name, float age, char *owner)
 }
 
 /**
- * _copy: function
+ * _copy - function
  * @str: string
  * Return: a string
  */
