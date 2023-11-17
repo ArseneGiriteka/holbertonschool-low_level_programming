@@ -1,7 +1,5 @@
 #include "3-calc.h"
 
-op_t *init_op(char *);
-
 /**
  * get_op_func - operator selector function
  * @s: operator in string
