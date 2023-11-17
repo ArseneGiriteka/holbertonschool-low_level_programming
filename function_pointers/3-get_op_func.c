@@ -8,10 +8,6 @@
 int (*get_op_func(char *s))(int, int)
 {
 	op_t *op = init_op(s);
-
-	if (op == NULL)
-		return (NULL);
-
 	return (op->f);
 }
 
@@ -28,18 +24,16 @@ op_t *init_op(char *s)
 	int (*operation[])(int, int) = {op_add, op_sub, op_mul, op_div, op_mod};
 
 	operator = malloc(sizeof(op_t));
-	if (operator != NULL)
+
+	while (*(tab + count))
 	{
-		while (*(tab + count))
+		if (*s == *(*(tab + count)))
 		{
-			if (*s == *(*(tab + count)))
-			{
-				operator->op = *(tab + count);
-				operator->f = (operation[count]);
-				return (operator);
-			}
-			count++;
+			operator->op = *(tab + count);
+			operator->f = (operation[count]);
+			return (operator);
 		}
+		count++;
 	}
 	return (NULL);
 }
