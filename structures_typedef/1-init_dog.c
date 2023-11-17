@@ -25,9 +25,6 @@ char *_copy(char *str)
 	unsigned int i = 0, len = 0;
 	char *copy;
 
-	if (str == NULL)
-		return (NULL);
-
 	while (*(str + len))
 	{
 		len++;
