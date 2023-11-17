@@ -10,9 +10,12 @@ char *_copy(char *str);
  */
 void init_dog(struct dog *d, char *name, float age, char *owner)
 {
-	d->name = _copy(name);
-	d->age = age;
-	d->owner = _copy(owner);
+	if (d != NULL)
+	{
+		d->name = _copy(name);
+		d->age = age;
+		d->owner = _copy(owner);
+	}
 }
 
 /**
