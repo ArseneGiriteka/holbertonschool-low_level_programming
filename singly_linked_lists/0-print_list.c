@@ -21,11 +21,6 @@ size_t print_list(const list_t *h)
 	if (h->next != NULL)
 		size += show_list(h->next, h);
 
-	if (size != 1)
-		printf("-> %lu elements", size);
-	else
-		printf("-> %lu element", size);
-
 	return (size);
 }
 
