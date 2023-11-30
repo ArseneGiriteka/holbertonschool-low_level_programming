@@ -29,12 +29,16 @@ list_t *add_node_end(list_t **head, const char *str)
 	{
 		*head = copy;
 	}
-	tmp = (*head);
-	while (((tmp->next) != NULL) && ((tmp->next) != *head))
+	else
 	{
-		tmp = tmp->next;
+		tmp = (*head);
+		while ((tmp->next) != *head && (tmp->next) != NULL)
+		{
+			tmp = tmp->next;
+		}
+
+		tmp->next = copy;
 	}
-	tmp->next = copy;
 	return (copy);
 }
 
