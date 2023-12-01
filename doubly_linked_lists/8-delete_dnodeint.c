@@ -1,6 +1,6 @@
 #include "lists.h"
 
-dlistint_t *get_node(dlistint_t *, unsigned int);
+dlistint_t *get_dnodeint_at_index(dlistint_t *, unsigned int);
 /**
  * delete_dnodeint_at_index - function
  * @head: list
@@ -10,42 +10,35 @@ dlistint_t *get_node(dlistint_t *, unsigned int);
 int delete_dnodeint_at_index(dlistint_t **head,
 		unsigned int index)
 {
-	dlistint_t *tmp = NULL;
-	unsigned int count = 0;
+	dlistint_t *copy = NULL;
 
-	if (head == NULL)
+	if ((head == NULL) || ((*head) == NULL))
 		return (-1);
-
-	*head = get_node(*head, index);
-
-	if (count == index && (*head) != NULL)
+	while ((*head)->prev != NULL)
+		*head = (*head)->prev;
+	copy = get_dnodeint_at_index(*head, index);
+	if (copy != NULL)
 	{
-		if ((*head)->prev != NULL)
+		if ((copy->prev == NULL) && (copy->next == NULL))
 		{
-			((*head)->prev)->next = (*head)->next;
-			if ((*head)->next != NULL)
-				((*head)->next)->prev = ((*head)->prev);
-			tmp = *head;
-			*head = (*head)->prev;
-		}
-		else if ((*head)->next != NULL)
-		{
-			((*head)->next)->prev = (*head)->prev;
-			if ((*head)->prev != NULL)
-				((*head)->prev)->next = (*head)->next;
-			tmp = *head;
-			*head = (*head)->next;
-		}
-		else if (((*head)->prev == NULL) && ((*head)->next == NULL))
-		{
-			free(*head);
 			*head = NULL;
 		}
-		if (tmp != NULL)
+		else
 		{
-			free(tmp);
-			tmp = NULL;
+			if (copy->prev != NULL)
+			{
+				(copy->prev)->next = copy->next;
+				*head = copy->prev;
+			}
+
+			if (copy->next != NULL)
+			{
+				(copy->next)->prev = copy->prev;
+				*head = copy->next;
+			}
 		}
+		free(copy);
+		copy = NULL;
 		return (1);
 	}
 	return (-1);
@@ -57,7 +50,7 @@ int delete_dnodeint_at_index(dlistint_t **head,
  * @index: index
  * Return: node
  */
-dlistint_t *get_node(dlistint_t *head, unsigned int index)
+dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
 {
 	dlistint_t *node, *copy;
 	unsigned int i = 0;
