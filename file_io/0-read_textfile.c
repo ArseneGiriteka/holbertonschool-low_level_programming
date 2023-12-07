@@ -1,8 +1,5 @@
 #include "main.h"
 
-ssize_t _length(char *str);
-void init(char *str, size_t size, char c);
-
 /**
  * read_textfile - function
  * @filename: file name
@@ -46,45 +43,4 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	free(buffer);
 	close(file_d);
 	return (wrote_letters);
-}
-
-/**
- * _length - function
- * @str: string
- * Return: the size, -1(NULL)
- */
-ssize_t _length(char *str)
-{
-	ssize_t size = 0;
-
-	if (str == NULL)
-		return (-1);
-
-	while (*(str + size))
-		size++;
-
-	return (size);
-}
-
-/**
- * init - funct
- * @str: string value
- * @size: size of str
- * @c: char value
- * Return: nothing
- */
-void init(char *str, size_t size, char c)
-{
-	size_t i = 0;
-
-	if (str == NULL || size == 0)
-		return;
-
-	while (i < size)
-	{
-		*(str + i) = c;
-		i++;
-	}
-	*(str + i) = '\0';
-	return;
 }
