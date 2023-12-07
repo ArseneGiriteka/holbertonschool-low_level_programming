@@ -1,6 +1,7 @@
 #include "main.h"
 
 void close_err(int file_d);
+void close_all(int file_from_d, int file_to_d);
 
 /**
  * main - to test copy_test_file
@@ -16,18 +17,18 @@ int main(int arg, char **argv)
 
 	if (arg != 3)
 	{
-		dprintf(1, "Usage: cp file_from file_to\n");
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
 	value = copy_text_file(argv[1], argv[2]);
 	if (value == -1)
 	{
-		dprintf(2, "Error: Can't read from file %s\n", argv[1]);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
 	else if (value == -2)
 	{
-		dprintf(2, "Error: Can't write to %s\n", argv[2]);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 		exit(99);
 	}
 	return (0);
@@ -43,47 +44,47 @@ int main(int arg, char **argv)
 int copy_text_file(const char *file_from, const char *file_to)
 {
 	int file_to_d, file_from_d;
-	ssize_t read_bytes, wrote_bytes;
 	char buffer[1024];
+	ssize_t read_bytes, writen_bytes;
 
 	if (file_from == NULL)
 		return (-1);
 	file_from_d = open(file_from, O_RDONLY);
 	if (file_from_d == -1)
 		return (-1);
-	read_bytes = read(file_from_d, buffer, 1024);
-	if (read_bytes == -1)
-	{
-		if (close(file_from_d) == -1)
-			close_err(file_from_d);
-		return (-1);
-	}
 	if (file_to == NULL)
 	{
-		if (close(file_from_d) == -1)
+		if (close(file_from_d) != 0)
 			close_err(file_from_d);
 		return (-2);
 	}
 	file_to_d = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (file_to_d == -1)
 	{
-		if (close(file_from_d) == -1)
+		if (close(file_from_d) != 0)
 			close_err(file_from_d);
 		return (-2);
 	}
-	wrote_bytes = write(file_to_d, buffer, read_bytes);
-	if (wrote_bytes == -1 || wrote_bytes != read_bytes)
+	while (1)
 	{
-		if (close(file_from_d) == -1)
-			close_err(file_from_d);
-		if (close(file_to_d) == -1)
-			close_err(file_to_d);
-		return (-2);
+		read_bytes = read(file_from_d, buffer, 1024);
+		if (read_bytes == 0)
+			break;
+		else if (read_bytes < 0)
+		{
+			close_all(file_from_d, file_to_d);
+			return (-1);
+		}
+		writen_bytes = write(file_to_d, buffer, read_bytes);
+		if (writen_bytes < 0 || writen_bytes != read_bytes)
+		{
+			close_all(file_from_d, file_to_d);
+			return (-2);
+		}
+		else if (writen_bytes == 0)
+			break;
 	}
-	if (close(file_from_d) == -1)
-		close_err(file_from_d);
-	if (close(file_to_d) == -1)
-		close_err(file_to_d);
+	close_all(file_from_d, file_to_d);
 	return (1);
 }
 
@@ -94,6 +95,20 @@ int copy_text_file(const char *file_from, const char *file_to)
  */
 void close_err(int file_d)
 {
-	dprintf(2, "Error: Can't close fd %d\n", file_d);
+	dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_d);
 	exit(100);
+}
+
+/**
+ * close_all - function
+ * @file_from_d: file
+ * @file_to_d: file
+ * Return: nothing
+ */
+void close_all(int file_from_d, int file_to_d)
+{
+	if (close(file_from_d) != 0)
+		close_err(file_from_d);
+	if (close(file_to_d) != 0)
+		close_err(file_to_d);
 }
