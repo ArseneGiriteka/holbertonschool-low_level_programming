@@ -30,7 +30,6 @@ int main(int arg, char **argv)
 		dprintf(2, "Error: Can't write to %s\n", argv[2]);
 		exit(99);
 	}
-
 	return (0);
 }
 
@@ -49,26 +48,28 @@ int copy_text_file(const char *file_from, const char *file_to)
 
 	if (file_from == NULL)
 		return (-1);
-	if (file_to == NULL)
-		return (-2);
 	file_from_d = open(file_from, O_RDONLY);
 	if (file_from_d == -1)
 		return (-1);
+	read_bytes = read(file_from_d, buffer, 1024);
+	if (read_bytes == -1)
+	{
+		if (close(file_from_d) == -1)
+			close_err(file_from_d);
+		return (-1);
+	}
+	if (file_to == NULL)
+	{
+		if (close(file_from_d) == -1)
+			close_err(file_from_d);
+		return (-2);
+	}
 	file_to_d = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (file_to_d == -1)
 	{
 		if (close(file_from_d) == -1)
 			close_err(file_from_d);
 		return (-2);
-	}
-	read_bytes = read(file_from_d, buffer, 1024);
-	if (read_bytes == -1)
-	{
-		if (close(file_from_d) == -1)
-			close_err(file_from_d);
-		if (close(file_to_d) == -1)
-			close_err(file_to_d);
-		return (-1);
 	}
 	wrote_bytes = write(file_to_d, buffer, read_bytes);
 	if (wrote_bytes == -1 || wrote_bytes != read_bytes)
