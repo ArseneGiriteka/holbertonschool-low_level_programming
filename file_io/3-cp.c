@@ -22,12 +22,12 @@ int main(int arg, char **argv)
 	value = copy_text_file(argv[1], argv[2]);
 	if (value == -1)
 	{
-		dprintf(2, "Error: Can't read from file %s", argv[1]);
+		dprintf(2, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
 	else if (value == -2)
 	{
-		dprintf(2, "Error: Can't write to %s", argv[2]);
+		dprintf(2, "Error: Can't write to %s\n", argv[2]);
 		exit(99);
 	}
 
@@ -54,7 +54,7 @@ int copy_text_file(const char *file_from, const char *file_to)
 	file_from_d = open(file_from, O_RDONLY);
 	if (file_from_d == -1)
 		return (-1);
-	file_to_d = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	file_to_d = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (file_to_d == -1)
 	{
 		if (close(file_from_d) == -1)
@@ -93,6 +93,6 @@ int copy_text_file(const char *file_from, const char *file_to)
  */
 void close_err(int file_d)
 {
-	dprintf(2, "Error: Can't close fd %d", file_d);
+	dprintf(2, "Error: Can't close fd %d\n", file_d);
 	exit(100);
 }
