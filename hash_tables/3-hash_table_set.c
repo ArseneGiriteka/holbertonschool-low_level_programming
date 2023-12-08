@@ -4,20 +4,38 @@ char *_strdup(const char *str);
 size_t _strcomp(const char *str_a, const char *str_b);
 
 /**
- * hash_table_set - function
- * @ht: a hash table
- * @value: a value
- * @key: key of @value
- * Return: 1(success) 0(failure)
+ * hash_table_set - Adds an element to the hash table.
+ * @ht: The hash table to add or update the key/value to.
+ * @key: The key. It can't be an empty string.
+ * @value: The value associated with the key. It must be duplicated.
+ *
+ * Return: 1 if it succeeded, 0 otherwise.
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	hash_node_t *new_node;
-	hash_node_t *tmp_node;
-	unsigned long int l1, l2;
+	unsigned long int index;
+	hash_node_t *new_node, *current;
 
-	if (ht == NULL || key == NULL)
+	if (ht == NULL || key == NULL || *key == '\0')
 		return (0);
+
+	index = key_index((const unsigned char *)key, ht->size);
+
+	current = ht->array[index];
+
+	while (current != NULL)
+	{
+		if (_strcomp(current->key, key) == 1)
+		{
+			free(current->value);
+			current->value = _strdup((const char *) value);
+			if (current->value == NULL)
+				return (0);
+			return (1);
+		}
+		current = current->next;
+	}
+
 	new_node = malloc(sizeof(hash_node_t));
 	if (new_node == NULL)
 		return (0);
@@ -28,47 +46,37 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		free(new_node);
 		return (0);
 	}
+
 	new_node->value = _strdup(value);
-
-	if (*(ht->array) == NULL)
+	if (new_node->value == NULL)
 	{
-		(ht->size)++;
-		new_node->next = NULL;
-		*(ht->array) = new_node;
-		return (1);
+		free(new_node->key);
+		free(new_node);
+		return (0);
 	}
-	tmp_node = *(ht->array);
 
-	while (tmp_node != NULL)
-	{
-		if (_strcomp(tmp_node->key, new_node->key) == 1)
-		{
-			tmp_node->value = new_node->value;
-			free(new_node->key);
-			free(new_node->value);
-			free(new_node);
-			return (1);
-		}
+	new_node->next = ht->array[index];
+	ht->array[index] = new_node;
 
-		if ((key_index((const unsigned char *) (tmp_node->key), ht->size) ==
-				key_index((const unsigned char *) (new_node->key), ht->size)) &&
-				(_strcomp(tmp_node->key, new_node->key) != 1))
-		{
-			(ht->size)++;
-			new_node->next = *(ht->array);
-			*(ht->array) = new_node;
-			return (1);
-		}
-
-		if (tmp_node->next != NULL)
-			tmp_node = tmp_node->next;
-		else
-			break;
-	}
-	(ht->size)++;
-	new_node->next = NULL;
-	tmp_node->next = new_node;
 	return (1);
+}
+
+/**
+ * _strcomp - function
+ * @str_a: string
+ * @str_b: string
+ * Return: integer 1(success) 0(failure)
+ */
+size_t _strcomp(const char *str_a, const char *str_b)
+{
+	size_t i = 0;
+
+	while (*(str_a + i) != '\0' && (*(str_a + i) == *(str_b + i)))
+		i++;
+	if (*(str_a + i) == *(str_b + i))
+		return (1);
+	else
+		return (0);
 }
 
 /**
@@ -95,22 +103,4 @@ char *_strdup(const char *str)
 		*(copy + i) = *(str + i);
 	}
 	return (copy);
-}
-
-/**
- * _strcomp - function
- * @str_a: string
- * @str_b: string
- * Return: integer 1(success) 0(failure)
- */
-size_t _strcomp(const char *str_a, const char *str_b)
-{
-	size_t i = 0;
-
-	while (*(str_a + i) != '\0' && (*(str_a + i) == *(str_b + i)))
-		i++;
-	if (*(str_a + i) == *(str_b + i))
-		return (1);
-	else
-		return (0);
 }
