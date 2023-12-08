@@ -1,5 +1,7 @@
 #include "hash_tables.h"
 
+size_t _strcomp(const char *str_a, const char *str_b);
+
 /**
  * hash_table_get - function
  * @ht: hash table
@@ -15,11 +17,13 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 		return (NULL);
 
 	index = key_index((const unsigned char *) key, ht->size);
-	if (index >= ht->size)
-		return (NULL);
 	node = ht->array[index];
-	if (node != NULL)
-		return (node->value);
-	else
-		return (NULL);
+
+	while (node != NULL)
+	{
+		if (_strcomp(node->key, key) == 1)
+			return (node->value);
+		node = node->next;
+	}
+	return (NULL);
 }
